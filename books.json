@@ -1,14 +1,17 @@
 [
   {
     "id": 1,
-    "name": "Buch Nr. 1"
+    "name": "Buch Nr. 1",
+    "author": "Anna"
   },
   {
     "id": 2,
-    "name": "Buch Nr. 2"
+    "name": "Buch Nr. 2",
+    "author": "Tom"
   },
   {
     "id": 3,
-    "name": "Buch Nr. 3"
+    "name": "Buch Nr. 3",
+    "author": "Anna"
   }
 ]

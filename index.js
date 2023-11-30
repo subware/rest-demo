@@ -2,6 +2,30 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 
+bodyParser = require("body-parser"),
+swaggerJsdoc = require("swagger-jsdoc"),
+swaggerUi = require("swagger-ui-express");
+
+const options = {
+    definition: {
+      openapi: "3.1.0",
+      info: {
+        title: "Book API",
+        version: "0.1.0",
+        description:
+          "This is a book API",
+      },
+      servers: [
+        {
+          url: "http://localhost:8081",
+        },
+      ],
+    },
+    apis: ["./routes/*.js"],
+  };
+  
+  const specs = swaggerJsdoc(options);
+
 var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
@@ -9,6 +33,12 @@ var server = app.listen(8081, function () {
 });
 
 app.use(express.json());
+
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs)
+  );
 
 // GET books
 app.get('/', (req, res) => {

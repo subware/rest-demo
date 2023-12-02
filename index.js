@@ -19,7 +19,15 @@ app.get('/', (req, res) => {
 
 // POST book
 app.post('/', function (req, res) {
+    console.log("test:" + req.body);
     // TODO
+    fs.readFile(__dirname + "/" + "books.json", 'utf8', function (err, data) {
+        data = JSON.parse(data);
+        data.push(req.body);
+        console.log(req.body);
+        fs.writeFile(__dirname + "/" + "books.json", JSON.stringify(data, null, 2), () => {});
+        res.end(JSON.stringify(data));
+    });
     res.end();
 });
 
